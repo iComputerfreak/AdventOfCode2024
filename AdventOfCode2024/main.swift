@@ -1,12 +1,18 @@
 // Copyright © 2024 Jonas Frey. All rights reserved.
 
-let day = Day1Part2.self
+let days: [any Day] = [
+    Day1Part1(),
+    Day1Part2()
+]
 
-do {
-    let testResult = try day.test()
-    print("Test result: \(testResult). Expected: \(day.expectedTestResult)")
-    let result = try day.run()
-    print("Result: \(result)")
-} catch {
-    print("An error occurred: \(error)")
+for day in days {
+    let name = String(describing: type(of: day))
+    do {
+        let testResult = try day.test()
+        print("\(name) Test result: \(testResult). Expected: \(day.expectedTestResult)")
+        let result = try day.run()
+        print("\(name) Result: \(result)")
+    } catch {
+        print("\(name): An error occurred: \(error)")
+    }
 }

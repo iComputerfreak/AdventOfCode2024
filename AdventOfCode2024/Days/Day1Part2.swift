@@ -2,8 +2,8 @@
 
 import Foundation
 
-enum Day1Part1 {
-    static func run(input: String = Self.input) throws -> Int {
+struct Day1Part2: Day {
+    func run(input: String) throws -> String {
         let matrix = input
             .components(separatedBy: .newlines)
             .filter { !$0.isEmpty }
@@ -15,29 +15,28 @@ enum Day1Part1 {
                     // Convert to Int
                     .compactMap(Int.init)
             }
-        // Transpose the matrix
-        let firstColumn = matrix.map { $0[0] }.sorted()
-        let secondColumn = matrix.map { $0[1] }.sorted()
-        return zip(firstColumn, secondColumn)
-            // Calculate the distance
-            .map { locationIDs in abs(locationIDs.0 - locationIDs.1) }
-            .reduce(0, +)
+        let firstColumn = matrix.map { $0[0] }
+        let secondColumn = matrix.map { $0[1] }
+        let numberCounts = Dictionary(grouping: secondColumn, by: \.self)
+            .mapValues(\.count)
+        return String(
+            firstColumn.map { $0 * (numberCounts[$0] ?? 0) }
+                .reduce(0, +)
+        )
     }
     
-    static func test() throws -> Int {
-        return try run(input: """
-        3   4
-        4   3
-        2   5
-        1   3
-        3   9
-        3   3
-        """)
-    }
+    let testInput: String = """
+    3   4
+    4   3
+    2   5
+    1   3
+    3   9
+    3   3
+    """
+
+    let expectedTestResult: String = "31"
     
-    static let expectedTestResult: String = "11"
-    
-    static private let input: String = """
+    let input: String = """
     35446   18696
     46314   66062
     33933   83974
