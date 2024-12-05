@@ -7,6 +7,8 @@ let days: [any Day] = [
     Day2Part2(),
     Day3Part1(),
     Day3Part2(),
+//    Day4Part1(),
+//    Day4Part2(),
 ]
 
 for day in days {
