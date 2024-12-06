@@ -29,13 +29,6 @@ fileprivate enum Direction: CaseIterable {
     }
 }
 
-fileprivate extension Array {
-    subscript(safe index: Int) -> Element? {
-        guard indices.contains(index) else { return nil }
-        return self[index]
-    }
-}
-
 fileprivate extension String {
     subscript(coordinate: Point) -> Element? {
         guard let line = components(separatedBy: .newlines)[safe: coordinate.y] else { return nil }
