@@ -12,7 +12,9 @@ let days: [any Day] = [
 //    Day5Part1(),
 //    Day5Part2(),
 //    Day6Part1(),
-    Day6Part2(),
+//    Day6Part2(),
+//    Day7Part1(),
+    Day7Part2(),
 ]
 
 for day in days {
